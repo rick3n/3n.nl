@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Overmorgen — AI-transformatie voor het MKB · Zoetermeer</title>
+<meta name="description" content="Van 'we moeten iets met AI' naar een werkend proces — in weken, niet maanden. Expert-driven AI-transformatie voor MKB van 25–250 medewerkers in de regio Zoetermeer.">
+<style>
+  :root {
+    --bg:#ffffff;
+    --surface:#f4f5f7;
+    --surface-2:#eceef2;
+    --ink:#0a0c10;
+    --muted:#565b66;
+    --faint:#8b9099;
+    --line:#e3e5ea;
+    --accent:#1f43ff;
+    --accent-ink:#1636e0;
+    --on-accent:#ffffff;
+    --sans:"Helvetica Neue",Helvetica,Arial,system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --maxw:1200px;
+    --r:4px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0a0b0e; --surface:#14161b; --surface-2:#1b1e25; --ink:#f2f3f6; --muted:#9298a3;
+      --faint:#6a7079; --line:#232630; --accent:#5570ff; --accent-ink:#7a8dff; --on-accent:#0a0b0e;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --surface:#f4f5f7; --surface-2:#eceef2; --ink:#0a0c10; --muted:#565b66;
+    --faint:#8b9099; --line:#e3e5ea; --accent:#1f43ff; --accent-ink:#1636e0; --on-accent:#ffffff;
+  }
+  :root[data-theme="dark"]{
+    --bg:#0a0b0e; --surface:#14161b; --surface-2:#1b1e25; --ink:#f2f3f6; --muted:#9298a3;
+    --faint:#6a7079; --line:#232630; --accent:#5570ff; --accent-ink:#7a8dff; --on-accent:#0a0b0e;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 clamp(18px,4vw,44px); }
+  .mono{ font-family:var(--mono); }
+  .lbl{ font-family:var(--mono); font-size:11.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-ink); }
+  :focus-visible{ outline:2.5px solid var(--accent); outline-offset:3px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:9px; font-family:var(--sans); font-weight:700; font-size:14px; letter-spacing:-.01em; padding:12px 20px; border-radius:var(--r); text-decoration:none; cursor:pointer; border:1.5px solid var(--ink); background:transparent; color:var(--ink); transition:background .14s, color .14s, transform .12s; white-space:nowrap; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn.primary{ background:var(--accent); border-color:var(--accent); color:var(--on-accent); }
+  .btn.primary:hover{ background:var(--accent-ink); border-color:var(--accent-ink); }
+  .btn.ghost:hover{ background:var(--ink); color:var(--bg); }
+  .btn .arw{ transition:transform .14s; }
+  .btn:hover .arw{ transform:translateX(3px); }
+
+  /* nav */
+  header.nav{ position:sticky; top:0; z-index:60; background:color-mix(in srgb,var(--bg) 86%,transparent); backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:border-color .2s; }
+  header.nav.scrolled{ border-bottom-color:var(--line); }
+  .nav-in{ display:flex; align-items:center; justify-content:space-between; height:66px; gap:20px; }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:800; font-size:16px; letter-spacing:-.01em; }
+  .brand .glyph{ width:26px; height:26px; border-radius:3px; background:var(--accent); position:relative; flex:none; }
+  .brand .glyph::after{ content:""; position:absolute; inset:7px 7px auto auto; width:8px; height:8px; background:var(--on-accent); }
+  .brand .wm{ font-family:var(--sans); }
+  .brand .wm b{ color:var(--accent-ink); }
+  nav.links{ display:flex; gap:28px; }
+  nav.links a{ text-decoration:none; font-size:13.5px; color:var(--muted); font-weight:600; letter-spacing:-.01em; }
+  nav.links a:hover{ color:var(--ink); }
+  @media (max-width:860px){ nav.links{ display:none; } }
+
+  /* hero */
+  .hero{ padding:clamp(46px,8vw,92px) 0 clamp(30px,4vw,44px); border-bottom:1px solid var(--line); }
+  .hero .meta{ display:flex; flex-wrap:wrap; gap:8px 30px; margin-bottom:28px; }
+  .hero .meta span{ font-family:var(--mono); font-size:12px; color:var(--faint); letter-spacing:.02em; }
+  .hero .meta b{ color:var(--muted); font-weight:600; }
+  h1.mega{ font-weight:800; font-size:clamp(38px,8.4vw,92px); line-height:.98; letter-spacing:-.035em; margin:0 0 26px; max-width:15ch; text-wrap:balance; }
+  h1.mega em{ font-style:normal; color:var(--accent); }
+  .hero .sub{ font-size:clamp(16px,2.1vw,20px); color:var(--muted); max-width:52ch; margin:0 0 30px; }
+  .hero .cta{ display:flex; flex-wrap:wrap; gap:12px; }
+  .hero .cta .btn{ padding:14px 24px; font-size:15px; }
+
+  /* ticker */
+  .ticker{ border-bottom:1px solid var(--line); background:var(--surface); overflow:hidden; }
+  .ticker .track{ display:flex; gap:0; white-space:nowrap; will-change:transform; animation:scroll 34s linear infinite; }
+  .ticker:hover .track{ animation-play-state:paused; }
+  .ticker .item{ font-family:var(--mono); font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); padding:14px 26px; display:inline-flex; align-items:center; gap:26px; }
+  .ticker .item::after{ content:"◆"; color:var(--accent); font-size:8px; }
+  @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .ticker .track{ animation:none; } }
+
+  /* section */
+  section{ padding:clamp(56px,8vw,104px) 0; }
+  .head{ display:grid; grid-template-columns:auto 1fr; gap:18px 30px; align-items:start; margin-bottom:clamp(34px,5vw,56px); }
+  .head .idx{ font-family:var(--mono); font-size:12px; color:var(--accent-ink); letter-spacing:.1em; padding-top:12px; }
+  .head h2{ font-weight:800; font-size:clamp(27px,4.6vw,48px); line-height:1.02; letter-spacing:-.03em; margin:0; max-width:20ch; text-wrap:balance; }
+  .head .h2sub{ grid-column:2; font-size:clamp(15px,1.9vw,18px); color:var(--muted); max-width:56ch; margin:14px 0 0; }
+
+  /* problem — big numbered rows */
+  .rows{ border-top:1px solid var(--line); }
+  .prow{ display:grid; grid-template-columns:64px 1fr 1.1fr; gap:20px 30px; padding:26px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .prow .n{ font-family:var(--mono); font-size:14px; color:var(--accent-ink); padding-top:6px; }
+  .prow h3{ font-weight:750; font-size:clamp(19px,2.3vw,24px); letter-spacing:-.02em; margin:0; line-height:1.15; }
+  .prow p{ margin:0; color:var(--muted); font-size:15.5px; }
+  @media (max-width:760px){ .prow{ grid-template-columns:40px 1fr; } .prow p{ grid-column:2; } }
+
+  /* services grid */
+  .svc{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; }
+  .svc .cell{ background:var(--bg); padding:28px 24px; display:flex; flex-direction:column; min-height:230px; transition:background .15s; }
+  .svc .cell:hover{ background:var(--surface); }
+  .svc .step-n{ font-family:var(--mono); font-size:12px; color:var(--faint); letter-spacing:.1em; margin-bottom:20px; }
+  .svc .cell h3{ font-weight:750; font-size:20px; letter-spacing:-.02em; margin:0 0 9px; }
+  .svc .cell p{ margin:0 0 18px; color:var(--muted); font-size:14px; }
+  .svc .price{ margin-top:auto; font-family:var(--mono); font-size:13px; color:var(--ink); }
+  .svc .price b{ color:var(--accent-ink); }
+  @media (max-width:860px){ .svc{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .svc{ grid-template-columns:1fr; } }
+
+  /* why — 2col */
+  .why{ display:grid; grid-template-columns:repeat(2,1fr); gap:0 44px; }
+  .why .w{ display:grid; grid-template-columns:auto 1fr; gap:18px; padding:24px 0; border-top:1px solid var(--line); }
+  .why .w .k{ font-family:var(--mono); font-size:12px; color:var(--accent-ink); padding-top:5px; }
+  .why .w h3{ font-weight:750; font-size:19px; letter-spacing:-.015em; margin:0 0 5px; }
+  .why .w p{ margin:0; color:var(--muted); font-size:15px; }
+  @media (max-width:760px){ .why{ grid-template-columns:1fr; } }
+
+  /* voor wie split */
+  .fit{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; }
+  .fit .side{ background:var(--bg); padding:32px 28px; }
+  .fit .side.no{ background:var(--surface); }
+  .fit .side h3{ display:flex; align-items:center; gap:11px; font-weight:800; font-size:19px; letter-spacing:-.02em; margin:0 0 18px; }
+  .fit .tag{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:4px 9px; border-radius:3px; }
+  .fit .yes .tag{ background:var(--accent); color:var(--on-accent); }
+  .fit .no .tag{ background:transparent; border:1px solid var(--line); color:var(--faint); }
+  .fit ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .fit li{ font-size:15px; padding-left:26px; position:relative; }
+  .fit .yes li::before{ content:"→"; position:absolute; left:0; color:var(--accent); font-weight:700; }
+  .fit .no li{ color:var(--muted); }
+  .fit .no li::before{ content:"×"; position:absolute; left:0; color:var(--faint); }
+  @media (max-width:640px){ .fit{ grid-template-columns:1fr; } }
+
+  /* stats band */
+  .stats-band{ background:var(--ink); color:var(--bg); }
+  .stats-band .wrap{ padding-top:clamp(44px,6vw,72px); padding-bottom:clamp(44px,6vw,72px); }
+  .stats-band .lbl{ color:var(--accent); }
+  .stats-band h2{ color:var(--bg); font-weight:800; font-size:clamp(24px,3.6vw,38px); letter-spacing:-.025em; margin:14px 0 40px; max-width:24ch; text-wrap:balance; }
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+  .stat .n{ font-weight:800; font-size:clamp(38px,6vw,60px); letter-spacing:-.04em; line-height:1; color:var(--bg); font-variant-numeric:tabular-nums; }
+  .stat .n .u{ color:var(--accent); }
+  .stat .t{ margin-top:10px; font-size:14px; color:rgba(255,255,255,.62); max-width:22ch; }
+  :root[data-theme="dark"] .stat .t, :root:not([data-theme]) .stat .t{ color:rgba(242,243,246,.6); }
+  @media (max-width:760px){ .stats{ grid-template-columns:1fr 1fr; gap:32px 24px; } }
+
+  /* cta */
+  .final{ text-align:left; }
+  .final h2{ font-weight:800; font-size:clamp(30px,6vw,64px); line-height:1; letter-spacing:-.035em; margin:0 0 20px; max-width:16ch; text-wrap:balance; }
+  .final p{ font-size:18px; color:var(--muted); max-width:46ch; margin:0 0 30px; }
+  .final .cta{ display:flex; flex-wrap:wrap; gap:12px; }
+  .final .cta .btn{ padding:15px 26px; font-size:15px; }
+  .contact-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:56px; padding-top:32px; border-top:1px solid var(--line); }
+  .cinfo .k{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-bottom:7px; }
+  .cinfo .v{ font-size:15px; }
+  .cinfo .v a{ color:var(--accent-ink); text-decoration:none; font-weight:600; }
+  .cinfo .v a:hover{ text-decoration:underline; }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr 1fr; } }
+
+  footer.foot{ border-top:1px solid var(--line); padding:30px 0 42px; }
+  footer.foot .fin{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; align-items:center; }
+  footer.foot .note{ font-family:var(--mono); font-size:11px; color:var(--faint); max-width:50ch; line-height:1.55; }
+
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .55s cubic-bezier(.2,.7,.3,1), transform .55s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body id="top">
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <span class="glyph" aria-hidden="true"></span>
+      <span class="wm">Studio&nbsp;<b>Overmorgen</b></span>
+    </a>
+    <nav class="links">
+      <a href="#probleem">Het probleem</a>
+      <a href="#aanpak">Aanpak</a>
+      <a href="#waarom">Waarom wij</a>
+      <a href="#voorwie">Voor wie</a>
+    </nav>
+    <a class="btn primary" href="#contact">Plan een gesprek <span class="arw">→</span></a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="meta">
+      <span><b>EST.</b> Dutch Innovation Factory · Zoetermeer</span>
+      <span><b>VOOR</b> MKB 25–250 fte</span>
+      <span><b>MODEL</b> expert-driven · vaste prijs</span>
+    </div>
+    <h1 class="mega">Van "we moeten iets met AI" naar een <em>werkend proces</em>.</h1>
+    <p class="sub">Geen cursus die je over twee weken vergeet. Wij pakken één echt proces in je bedrijf en veranderen het — met AI, met experts die hun naam eronder zetten, in weken in plaats van maanden.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Plan een kennismaking <span class="arw">→</span></a>
+      <a class="btn ghost" href="#aanpak">Bekijk de aanpak</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="track" id="track">
+    <span class="item">AI-scan</span><span class="item">Pressure-cooker week</span><span class="item">Procesautomatisering</span><span class="item">Legacy onder de loep</span><span class="item">Expert-review</span><span class="item">Kwaliteitsborging</span><span class="item">Productized services</span><span class="item">AI-café</span>
+    <span class="item">AI-scan</span><span class="item">Pressure-cooker week</span><span class="item">Procesautomatisering</span><span class="item">Legacy onder de loep</span><span class="item">Expert-review</span><span class="item">Kwaliteitsborging</span><span class="item">Productized services</span><span class="item">AI-café</span>
+  </div>
+</div>
+
+<!-- PROBLEEM -->
+<section id="probleem">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="idx">01 / probleem</span>
+      <h2>Je voelt de druk. Alleen niet waar te beginnen.</h2>
+      <p class="h2sub">De vragen die elke MKB-ondernemer op dit moment bezighouden — en waarom een algemeen webinar ze niet oplost.</p>
+    </div>
+    <div class="rows">
+      <div class="prow reveal"><div class="n">01</div><h3>"Ik moet iets met AI"</h3><p>Het gevoel achter te lopen, zonder een eerste stap die past bij jóuw bedrijf en jóuw processen.</p></div>
+      <div class="prow reveal"><div class="n">02</div><h3>Duizend cursussen, nul vertrouwen</h3><p>Online is er eindeloos aanbod. Je wilt geen generiek verhaal, maar iemand die je situatie kent en meekijkt.</p></div>
+      <div class="prow reveal"><div class="n">03</div><h3>Kwetsbare legacy</h3><p>Systemen die op één IT'er draaien en die niemand durft aan te raken — precies waar AI de zwakke plekken vindt.</p></div>
+      <div class="prow reveal"><div class="n">04</div><h3>AI knikt alles goed</h3><p>Een model dat je naar de mond praat helpt je niet vooruit. Je hebt een kritische, menselijke blik nodig.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AANPAK -->
+<section id="aanpak" style="background:var(--surface);">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="idx">02 / aanpak</span>
+      <h2>Vier blokjes. Je begint klein en stopt wanneer je wilt.</h2>
+      <p class="h2sub">Geen dik offertetraject vooraf. Betalen per resultaat, geen open eind, geen uurtje-factuurtje.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="cell"><div class="step-n">STAP 01</div><h3>Kennismaken</h3><p>Loop binnen of bel. Je legt je vraag voor, wij zeggen eerlijk of we iets kunnen betekenen.</p><div class="price"><b>Gratis</b> · vrijblijvend</div></div>
+      <div class="cell"><div class="step-n">STAP 02</div><h3>AI-scan</h3><p>We kijken snel mee met je processen en wijzen aan waar AI het meeste oplevert.</p><div class="price">vanaf <b>€ 2.500</b> · voucher mogelijk</div></div>
+      <div class="cell"><div class="step-n">STAP 03</div><h3>Pressure-cooker</h3><p>In één intensieve week bouwen experts én jong talent een werkend prototype voor jouw proces.</p><div class="price">vaste prijs per traject</div></div>
+      <div class="cell"><div class="step-n">STAP 04</div><h3>Doorpakken</h3><p>Werkt het? Dan maken we het robuust en herbruikbaar, met begeleiding als je die wilt.</p><div class="price"><b>abonnement</b> of fixed fee</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WAAROM -->
+<section id="waarom">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="idx">03 / waarom wij</span>
+      <h2>Waarom hierheen, en niet naar zomaar een online cursus?</h2>
+    </div>
+    <div class="why">
+      <div class="w reveal"><div class="k">A</div><div><h3>Dichtbij &amp; laagdrempelig</h3><p>Geen contract voordat je iemand spreekt. Binnenlopen of bellen is de hele drempel.</p></div></div>
+      <div class="w reveal"><div class="k">B</div><div><h3>Een mens, geen chatbot</h3><p>Iemand die kritisch meedenkt en tegenspreekt. Vertrouwen ontstaat door eerlijkheid.</p></div></div>
+      <div class="w reveal"><div class="k">C</div><div><h3>Snel — een order wacht niet</h3><p>Vouchers en trajecten die in dagen lopen, niet in maanden. Als je iets nodig hebt, is dat nú.</p></div></div>
+      <div class="w reveal"><div class="k">D</div><div><h3>Experts met een naam</h3><p>Geen anonieme junior, maar mensen uit het regionale IT-cluster die hun reputatie inzetten.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-band">
+  <div class="wrap">
+    <span class="lbl">Wat we in jaar 1 waarmaken</span>
+    <h2>Meetbaar, betaald en concreet — anders telt het niet.</h2>
+    <div class="stats">
+      <div class="stat reveal"><div class="n">20</div><div class="t">MKB-bedrijven verder geholpen met transformatie</div></div>
+      <div class="stat reveal"><div class="n">4<span class="u">×</span></div><div class="t">betaalde bijeenkomsten en trainingen per jaar</div></div>
+      <div class="stat reveal"><div class="n">2</div><div class="t">oplossingen productized en herbruikbaar gemaakt</div></div>
+      <div class="stat reveal"><div class="n">&lt;5<span class="u">d</span></div><div class="t">van vraag tot voucher — geen maanden wachten</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOOR WIE -->
+<section id="voorwie">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="idx">04 / voor wie</span>
+      <h2>We zeggen liever meteen of het klikt.</h2>
+      <p class="h2sub">Eerlijk over voor wie dit wél werkt — en voor wie niet.</p>
+    </div>
+    <div class="fit reveal">
+      <div class="side yes">
+        <h3><span class="tag">Match</span> Dan zitten we goed</h3>
+        <ul>
+          <li>MKB met 25–250 medewerkers in de regio</li>
+          <li>Je voelt dat AI je branche binnenkort raakt</li>
+          <li>Je wilt échte verandering, geen inspiratiesessie</li>
+          <li>Je hebt een concreet proces dat slimmer kan</li>
+          <li>Je waardeert tegengas boven een ja-knikker</li>
+        </ul>
+      </div>
+      <div class="side no">
+        <h3><span class="tag">Geen match</span> Dan ben je hier verkeerd</h3>
+        <ul>
+          <li>Je zoekt de goedkoopste losse cursus</li>
+          <li>Je wilt AI "erbij" zonder iets te veranderen</li>
+          <li>Je verwacht wonderen zonder inzet of budget</li>
+          <li>Je wilt vooral bevestiging, geen tegengeluid</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--surface);">
+  <div class="wrap final">
+    <div class="reveal">
+      <span class="lbl">Even sparren?</span>
+      <h2 style="margin-top:16px;">Loop binnen, bel, of plan een gesprek.</h2>
+      <p>Geen verkooppraatje. Gewoon een gesprek over waar jij tegenaan loopt — en of wij kunnen helpen.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:hallo@studioovermorgen.nl?subject=Kennismaking">Mail ons je vraag <span class="arw">→</span></a>
+        <a class="btn ghost" href="tel:+31790000000">Bel direct</a>
+      </div>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="cinfo"><div class="k">Waar</div><div class="v">Dutch Innovation Factory<br>2e etage · Zoetermeer</div></div>
+      <div class="cinfo"><div class="k">Mail</div><div class="v"><a href="mailto:hallo@studioovermorgen.nl">hallo@studioovermorgen.nl</a></div></div>
+      <div class="cinfo"><div class="k">Bel</div><div class="v"><a href="tel:+31790000000">079 — 000 00 00</a></div></div>
+      <div class="cinfo"><div class="k">Voor wie</div><div class="v">MKB 25–250 fte · start-ups · IT-voorlopers</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap fin">
+    <a class="brand" href="#top"><span class="glyph" aria-hidden="true"></span><span class="wm">Studio&nbsp;<b>Overmorgen</b></span></a>
+    <p class="note">Werktitel &amp; conceptpagina — naam, contactgegevens en prijzen zijn placeholders uit de visiesessie (DIF, 7 juli 2026) en nog niet definitief.</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var nav=document.getElementById('nav');
+    var onScroll=function(){ nav.classList.toggle('scrolled', window.scrollY>8); };
+    onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els=document.querySelectorAll('.reveal');
+    if(reduce||!('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); }
+    else{
+      var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+      els.forEach(function(el){ io.observe(el); });
+    }
+  })();
+</script>
+</body>
+</html>
